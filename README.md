@@ -92,7 +92,7 @@ gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 60 --
 celery -A config.celery worker --pool=threads --concurrency=4 --loglevel=info --without-gossip --without-mingle --without-heartbeat
 ```
 
-### Docker
+### 🐳 Docker
 
 Сборка образа
 
@@ -142,7 +142,7 @@ pytest
 - Swagger доступен по адресу http://127.0.0.1:8000/swagger
 
 
-## 🐳 Деплой в прод
+## 🔝 Деплой в прод
 Предполагается развёртывание компонентов системы (api и celery worker) как отдельных Docker контейнеров с помощью любого оркестратора (Kubernetes, OpenShift и т.п.).
 
 Инит контейнером должны быть миграции, а уже после api и celery worker.
