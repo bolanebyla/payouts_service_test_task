@@ -104,19 +104,19 @@ docker build -t payouts_service .
 Применение миграций
 
 ```shell
-docker run payouts_service:latest entrypoint_migrations.sh
+docker run --env-file .env -e DB_HOST=host.docker.internal -e CELERY_BROKER_URL=amqp://guest:guest@host.docker.internal:5672/ payouts_service:latest entrypoint_migrations.sh
 ```
 
 Запуск http api
 
 ```shell
-docker run -p 8080:8080 payouts_service:latest entrypoint_http_api.sh
+docker run --env-file .env -e DB_HOST=host.docker.internal -e CELERY_BROKER_URL=amqp://guest:guest@host.docker.internal:5672/ -p 8080:8080 payouts_service:latest entrypoint_http_api.sh
 ```
 
 Запуск celery
 
 ```shell
-docker run payouts_service:latest entrypoint_celery.sh
+docker run --env-file .env -e DB_HOST=host.docker.internal -e CELERY_BROKER_URL=amqp://guest:guest@host.docker.internal:5672/ payouts_service:latest entrypoint_celery.sh
 ```
 
 ## Запуск компонентов окружения (docker-compose)
@@ -148,7 +148,8 @@ pytest
 
 Инит контейнером должны быть миграции, а уже после api и celery worker.
 
-Перед api рекомендуется настроить прокси-сервер (nginx и т.п.), который будет перенаправлять запросы в api (gunicorn).
+Перед api рекомендуется настроить прокси-сервер (Nginx, Ingress, и т.п.), который будет перенаправлять запросы в api (gunicorn). 
+Статику (для Swagger) также необходимо раздавать через прокси сервер из volume `src/staticfiles`
 
 Количество подов api и celery worker'ов можно скейлить при увеличении нагрузки.
 

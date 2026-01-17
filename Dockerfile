@@ -26,3 +26,8 @@ COPY --from=base /app /app
 
 WORKDIR /app
 ENV PYTHONPATH=/app/src
+
+ENV DJANGO_SETTINGS_MODULE=config.settings
+
+RUN python -m compileall /app/src \
+ && python /app/src/manage.py collectstatic --noinput
