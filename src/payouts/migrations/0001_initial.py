@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
                             ("FAILED", "Ошибка обработки"),
                             ("CANCELLED", "Отменена"),
                         ],
-                        default="PROCESSING",
+                        default="NEW",
                     ),
                 ),
                 ("created_at", models.DateTimeField(auto_now_add=True)),

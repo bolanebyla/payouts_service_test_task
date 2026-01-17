@@ -46,7 +46,7 @@ class Payout(models.Model):
     )
     status = models.TextField(
         choices=PayoutsStatuses.choices,
-        default=PayoutsStatuses.PROCESSING,
+        default=PayoutsStatuses.NEW,
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
