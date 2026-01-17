@@ -1,0 +1,47 @@
+[project]
+name = "payouts-service-test-task"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "celery>=5.6.2",
+    "celery-types==0.24.0",
+    "django>=6.0.1",
+    "djangorestframework>=3.16.1",
+    "drf-yasg>=1.21.14",
+    "gunicorn>=23.0.0",
+    "psycopg[binary]>=3.3.2",
+    "python-dotenv>=1.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "freezegun>=1.5.5",
+    "pre-commit>=4.5.0",
+    "pytest>=9.0.1",
+    "pytest-django>=4.11.1",
+    "ruff>=0.14.7",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["test_*.py", "*_test.py", "tests.py"]
+addopts = "-ra"
+
+[tool.ruff]
+src = ["src"]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**/*" = ["S101"]
+"**/tests_core/**/*" = ["S101"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
