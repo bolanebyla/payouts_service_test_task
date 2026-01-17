@@ -185,3 +185,10 @@ pre-commit install
 ```
 
 После этого pre-commit будет автоматически запускаться перед каждым коммитом.
+
+### Примеры работы API
+![swagger](imgs/swagger_1.png)
+![Get list](imgs/swagger_2.png)
+![Create](imgs/swagger_3.png)
+![Get item](imgs/swagger_4.png)
+![Update](imgs/swagger_5.png)
